@@ -9,7 +9,6 @@ function clear_c(canvas) // clear canvas
 
 let default_line_color = "#222";
 let font_size = 32; // todo font size
-let precision = 1e6;
 let onplot_precision = 1e3; // precision of numbers drawn on the plot
 let line_width = 4;
 let gl_min_render_distance = {x: 0, y: 0};

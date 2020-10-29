@@ -1,6 +1,7 @@
 $("#calculate_button").on('click', main);
 
 // window.onload = main;
+window.calculation_precision = 1e9;
 
 function main()
 {
@@ -11,14 +12,17 @@ function main()
     let N = parseInt($("#N_input").val());
     let h = (X - x_start) / N;
 
+    recalc_y_exact(x_start, y_start);
+
     let x = x_start,
         y = y_start,
-        e = euler(x_start, y_start, X, N),
-        ei = euler_improved(x_start, y_start, X, N),
-        rk = runge_kutta(x_start, y_start, X, N),
+        e = new EulerNumericalMethod(x_start, y_start, X, N),
+        ei = new ImprovedEulerNumericalMethod(x_start, y_start, X, N),
+        rk = new RungeKuttaNumericalMethod(x_start, y_start, X, N),
         exact = [];
 
     out("step: " + h);
+    console.log("e", e);
     for (let i = 0; i <= N; i++)
     {
         exact.push({x: x, y: y_exact(x)});
@@ -38,7 +42,7 @@ function main()
         x += h;
     }
 
-    anim_speed = 750;
+    let anim_speed = 750;
     $("#plot_example_img").animate({
         opacity: 0
     }, {
