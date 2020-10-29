@@ -1,6 +1,6 @@
 $("#calculate_button").on('click', main);
 
-// window.onload = main;
+window.onload = main;
 window.calculation_precision = 1e9;
 
 function main()
@@ -25,12 +25,12 @@ function main()
             rk = new RungeKuttaNumericalMethod(x_start, y_start, X, n);
 
         // max gte & max lte
-        let max_e_gte = -Infinity;
-        let max_ei_gte = -Infinity;
-        let max_rk_gte = -Infinity;
-        let max_e_lte = -Infinity;
-        let max_ei_lte = -Infinity;
-        let max_rk_lte = -Infinity;
+        let max_e_gte = -Infinity,
+            max_ei_gte = -Infinity,
+            max_rk_gte = -Infinity,
+            max_e_lte = -Infinity,
+            max_ei_lte = -Infinity,
+            max_rk_lte = -Infinity;
         for (let i = 0; i <= n; i++)
         {
             max_e_gte = Math.max(e.gte[i].y, max_e_gte);
@@ -40,12 +40,12 @@ function main()
             max_ei_lte = Math.max(ei.lte[i].y, max_ei_lte);
             max_rk_lte = Math.max(rk.lte[i].y, max_rk_lte);
         }
-        max_err_e.gte.push({x: n, y: max_err_e});
-        max_err_ei.gte.push({x: n, y: max_err_ei});
-        max_err_rk.gte.push({x: n, y: max_err_rk});
-        max_err_e.lte.push({x: n, y: max_err_e});
-        max_err_ei.lte.push({x: n, y: max_err_ei});
-        max_err_rk.lte.push({x: n, y: max_err_rk});
+        max_err_e.gte.push({x: n, y: max_e_gte});
+        max_err_ei.gte.push({x: n, y: max_ei_gte});
+        max_err_rk.gte.push({x: n, y: max_rk_gte});
+        max_err_e.lte.push({x: n, y: max_e_lte});
+        max_err_ei.lte.push({x: n, y: max_ei_lte});
+        max_err_rk.lte.push({x: n, y: max_rk_lte});
     }
     console.log(max_err_rk);
 
