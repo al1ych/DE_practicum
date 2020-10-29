@@ -1,6 +1,6 @@
 $("#calculate_button").on('click', main);
 
-window.onload = main;
+//window.onload = main;
 window.calculation_precision = 1e9;
 
 function main()
